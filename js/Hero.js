@@ -1,24 +1,17 @@
-import {Phaser} from 'phaser.min';
 
-export class Hero {
-    constructor(game, x, y) {
-        Phaser.Sprite.call(this, game, x, y, 'hero');
-        this.anchor.set(0.5, 0.5);
+function Hero(game, x, y) {
+    Phaser.Sprite.call(this, game, x, y, 'hero');
+    this.anchor.set(0.5, 0.5);
 
-        // physic properties
-        this.game.physics.enable(this);
-        this.body.collideWorldBounds = true;
+    // physic properties
+    this.game.physics.enable(this);
+    this.body.collideWorldBounds = true;
 
-        this.animations.add('stop', [16]);
-        this.animations.add('run', [9,10, 11], 8, true); // 8fps looped
-        this.animations.add('jump', [3]);
-        this.animations.add('fall', [4]);
-        console.log(this.animation);
-        
-    }
-
-  
-
+    this.animations.add('stop', [16]);
+    this.animations.add('run', [9,10, 11], 8, true); // 8fps looped
+    this.animations.add('jump', [3]);
+    this.animations.add('fall', [4]);
+    console.log(this.animation);
 }
 
 // inherit from Phaser.Sprite
