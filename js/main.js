@@ -164,6 +164,8 @@ PlayState.preload = function () {
     this.game.load.image('font:numbers', 'images/numbers.png');
 
     this.game.load.image('background', 'images/pixel-castle-background.png');
+    this.game.load.image('dk', 'images/DoKo.png');
+    this.game.load.image('barrels', 'images/DKbarrels.png');
     this.game.load.image('ground', 'images/ground.png');
     this.game.load.image('grass:8x1', 'images/grass_8x1.png');
     this.game.load.image('grass:6x1', 'images/grass_6x1.png');
@@ -182,7 +184,7 @@ PlayState.preload = function () {
 
     this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
     this.game.load.spritesheet('spider', 'images/spider.png', 42, 32);
-    this.game.load.spritesheet('hero', 'images/bing.png', 47, 64);
+    this.game.load.spritesheet('hero', 'images/MarioWalk.png', 47, 64);
     this.game.load.spritesheet('door', 'images/door.png', 65, 50);
     this.game.load.spritesheet('icon:key', 'images/key_icon.png', 34, 30);
 
@@ -205,6 +207,8 @@ PlayState.create = function () {
 
     // create level
     this.game.add.image(0, 0, 'background');
+    this.game.add.image(730, 30, 'dk');
+    this.game.add.image(920, 18, 'barrels');
     this._loadLevel(this.game.cache.getJSON(`level:${this.level}`));
 
     // crete hud with scoreboards)
@@ -395,7 +399,7 @@ PlayState._createHud = function () {
 // =============================================================================
 
 window.onload = function () {
-    let game = new Phaser.Game(960, 600, Phaser.AUTO, 'game');
+    let game = new Phaser.Game(1028, 764, Phaser.AUTO, 'game');
     game.state.add('play', PlayState);
     game.state.start('play', true, false, {level: 0});
 };
