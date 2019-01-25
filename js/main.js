@@ -100,7 +100,8 @@ PlayState._handleCollisions = function () {
         null, this);
     this.game.physics.arcade.overlap(this.hero, this.spiders,
         this._onHeroVsEnemy, null, this);
-    this.game.physics.arcade.overlap(this.hero, this.key, this._onHeroVsKey,
+    this.game.physics.arcade.overlap(this
+        .hero, this.key, this._onHeroVsKey,
         null, this);
     this.game.physics.arcade.overlap(this.hero, this.door, this._onHeroVsDoor,
         // ignore if there is no key or the player is on air
