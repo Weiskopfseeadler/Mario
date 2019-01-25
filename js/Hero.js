@@ -19,7 +19,7 @@ Hero.prototype = Object.create(Phaser.Sprite.prototype);
 Hero.prototype.constructor = Hero;
 
 Hero.prototype.move = function (direction) {
-    const SPEED = 200;
+    const SPEED = 500;
     this.body.velocity.x = direction * SPEED;
 
     // update image flipping & animations
@@ -32,7 +32,7 @@ Hero.prototype.move = function (direction) {
 };
 
 Hero.prototype.jump = function () {
-    const JUMP_SPEED = 600;
+    const JUMP_SPEED = 1000;
     let canJump = this.body.touching.down;
 
     if (canJump) {

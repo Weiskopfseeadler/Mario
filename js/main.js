@@ -48,7 +48,7 @@ PlayState.preload = function () {
     this.game.load.image('icon:coin', 'images/coin_icon.png');
     this.game.load.image('key', 'images/key.png');
     this.game.load.image('row','images/platform.png',1,1);
-   
+
     
     
     
@@ -79,8 +79,8 @@ PlayState.create = function () {
 
     // create level
     this.game.add.image(0, 0, 'background');
-    this.game.add.image(730, 30, 'dk');
-    this.game.add.image(920, 18, 'barrels');
+    this.game.add.image(120, 30, 'dk');
+    this.game.add.image(20, 18, 'barrels');
     this._loadLevel(this.game.cache.getJSON(`level:${this.level}`));
 
     // crete hud with scoreboards)
@@ -144,7 +144,7 @@ PlayState._loadLevel = function (data) {
     this._spawnKey(data.key.x, data.key.y);
 
     // enable gravity
-    const GRAVITY = 1200;
+    const GRAVITY = 2400;
     this.game.physics.arcade.gravity.y = GRAVITY;
 };
 
@@ -155,7 +155,7 @@ PlayState._spawnPlatform = function (platform) {
     this.game.physics.enable(sprite);
     sprite.body.allowGravity = false;
     sprite.body.immovable = true;
-    sprite.angel+=60;
+    sprite.angle+=platform.rotate;
 
     this._spawnEnemyWall(platform.x, platform.y, 'left');
     this._spawnEnemyWall(platform.x + sprite.width, platform.y, 'right');

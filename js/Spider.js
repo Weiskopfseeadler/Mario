@@ -12,6 +12,7 @@ function Spider(game, x, y) {
     this.game.physics.enable(this);
     this.body.collideWorldBounds = true;
     this.body.velocity.x = Spider.SPEED;
+
 }
 
 Spider.SPEED = 100;

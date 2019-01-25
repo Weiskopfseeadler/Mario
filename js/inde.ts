@@ -45,6 +45,7 @@ PlayState.preload = function () {
 
     this.game.load.image('background', 'images/background.png');
     this.game.load.image('hero', 'images/hero_stopped.png');
+    this.game.load.image('DK', 'images/DonkeyKong.png');
 };
 
 PlayState.create = function () {
@@ -89,7 +90,8 @@ PlayState._loadLevel = function (data) {
 
 PlayState._spawnPlatform = function (platform) {
     let sprite = this.platforms.create(
-        platform.x, platform.y, platform.image);
+        platform.x, platform.y, platform.image, platform.rotate);
+
 
     this.game.physics.enable(sprite);
     sprite.body.allowGravity = false;
