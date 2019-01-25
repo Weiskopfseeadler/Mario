@@ -53,7 +53,7 @@ PlayState.preload = function () {
     
 
     this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
-    this.game.load.spritesheet('spider', 'images/spider.png', 42, 32);
+    this.game.load.spritesheet('barrel', 'images/enemies.png', 42, 32);
     this.game.load.spritesheet('hero', 'images/bing.png', 47, 64);
     this.game.load.spritesheet('door', 'images/door.png', 65, 50);
     this.game.load.spritesheet('icon:key', 'images/key_icon.png', 34, 30);
@@ -92,8 +92,8 @@ PlayState.update = function () {
 };
 
 PlayState._handleCollisions = function () {
-    this.game.physics.arcade.collide(this.spiders, this.platforms);
-    this.game.physics.arcade.collide(this.spiders, this.enemyWalls);
+    this.game.physics.arcade.collide(this.barrels, this.platforms);
+    this.game.physics.arcade.collide(this.barrels, this.enemyWalls);
     this.game.physics.arcade.collide(this.hero, this.platforms);
 
     this.game.physics.arcade.overlap(this.hero, this.coins, this._onHeroVsCoin,
@@ -127,14 +127,14 @@ PlayState._loadLevel = function (data) {
     this.bgDecoration = this.game.add.group();
     this.platforms = this.game.add.group();
     this.coins = this.game.add.group();
-    this.spiders = this.game.add.group();
+    this.barrels = this.game.add.group();
     this.enemyWalls = this.game.add.group();
     this.enemyWalls.visible = false;
 
     // spawn all platforms
     data.platforms.forEach(this._spawnPlatform, this);
     // spawn hero and enemies
-    this._spawnCharacters({hero: data.hero, spiders: data.spiders});
+    this._spawnCharacters({hero: data.hero, barrels: data.barrels});
     // spawn important objects
     data.coins.forEach(this._spawnCoin, this);
     this._spawnDoor(data.door.x, data.door.y);
@@ -170,9 +170,9 @@ PlayState._spawnEnemyWall = function (x, y, side) {
 
 PlayState._spawnCharacters = function (data) {
     // spawn spiders
-    data.spiders.forEach(function (spider) {
-        let sprite = new Spider(this.game, spider.x, spider.y);
-        this.spiders.add(sprite);
+    data.barrels.forEach(function (barrel) {
+        let sprite = new Barrel(this.game, barrel.x, barrel.y);
+        this.barrels.add(sprite);
     }, this);
 
     // spawn hero
