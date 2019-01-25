@@ -1,7 +1,7 @@
 // =============================================================================
 // sprites
 // =============================================================================
-import {Phaser} from './phaser.min';
+
 //
 // hero sprite
 //
@@ -27,7 +27,6 @@ Hero.prototype.move = function (direction) {
 // game states
 // =============================================================================
 
-var PlayState;
 PlayState = {};
 
 PlayState.init = function () {
@@ -46,6 +45,7 @@ PlayState.preload = function () {
     this.game.load.image('background', 'images/background.png');
     this.game.load.image('hero', 'images/hero_stopped.png');
     this.game.load.image('DK', 'images/DonkeyKong.png');
+
 };
 
 PlayState.create = function () {
