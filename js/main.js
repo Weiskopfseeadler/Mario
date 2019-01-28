@@ -102,7 +102,7 @@ PlayState._handleCollisions = function () {
 
     this.game.physics.arcade.overlap(this.hero, this.coins, this._onHeroVsCoin,
         null, this);
-    this.game.physics.arcade.overlap(this.hero, this.spiders,
+    this.game.physics.arcade.overlap(this.hero, this.barrels,
         this._onHeroVsEnemy, null, this);
     this.game.physics.arcade.overlap(this
         .hero, this.key, this._onHeroVsKey,

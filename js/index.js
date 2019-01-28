@@ -81,7 +81,7 @@ PlayState._loadLevel = function (data) {
     // spawn all platforms
     data.platforms.forEach(this._spawnPlatform, this);
     // spawn hero and enemies
-    this._spawnCharacters({hero: data.hero, spiders: data.spiders});
+    this._spawnCharacters({hero: data.hero, barrels: data.barrels});
 
     // enable gravity
     const GRAVITY = 1200;
