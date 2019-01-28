@@ -55,10 +55,9 @@ PlayState.preload = function () {
     
 
     this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
-    this.game.load.spritesheet('barrel', 'images/enemies.png', 42, 32);
+    this.game.load.spritesheet('barrel', 'images/PixelArt.png', 42, 32);
     this.game.load.spritesheet('hero', 'images/bing.png', 47, 64);
     this.game.load.spritesheet('door', 'images/door.png', 65, 50);
-    this.game.load.spritesheet('barrel', 'images/enemies.png', 65, 50);
     this.game.load.spritesheet('icon:key', 'images/key_icon.png', 34, 30);
 
     this.game.load.audio('sfx:jump', 'audio/jump.wav');
@@ -228,7 +227,6 @@ PlayState._onHeroVsCoin = function (hero, coin) {
 PlayState._onHeroVsEnemy = function (hero, enemy) {
     if (hero.body.velocity.y > 0) { // kill enemies when hero is falling
         hero.bounce();
-        enemy.die();
         this.sfx.stomp.play();
     }
     else { // game over -> restart the game
