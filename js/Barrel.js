@@ -5,7 +5,6 @@ function Barrel(game, x, y) {
     this.anchor.set(0.5);
     // animation
     this.animations.add('roll', [0, 1, 2], 8, true); // 8fps, looped
-    this.animations.add('die', [0, 4, 0, 4, 0, 4, 3, 3, 3, 3, 3, 3], 12);
     this.animations.play('crawl');
 
     // physic properties

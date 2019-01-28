@@ -58,6 +58,7 @@ PlayState.preload = function () {
     this.game.load.spritesheet('barrel', 'images/enemies.png', 42, 32);
     this.game.load.spritesheet('hero', 'images/bing.png', 47, 64);
     this.game.load.spritesheet('door', 'images/door.png', 65, 50);
+    this.game.load.spritesheet('barrel', 'images/enemies.png', 65, 50);
     this.game.load.spritesheet('icon:key', 'images/key_icon.png', 34, 30);
 
     this.game.load.audio('sfx:jump', 'audio/jump.wav');
