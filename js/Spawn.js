@@ -33,36 +33,3 @@ PlayState._spawnCharacters = function (data) {
     this.hero = new Hero(this.game, data.hero.x, data.hero.y);
     this.game.add.existing(this.hero);
 };
-
-PlayState._spawnCoin = function (coin) {
-    let sprite = this.coins.create(coin.x, coin.y, 'coin');
-    sprite.anchor.set(0.5, 0.5);
-
-    this.game.physics.enable(sprite);
-    sprite.body.allowGravity = false;
-
-    sprite.animations.add('rotate', [0, 1, 2, 1], 6, true); // 6fps, looped
-    sprite.animations.play('rotate');
-};
-
-PlayState._spawnDoor = function (x, y) {
-    this.door = this.bgDecoration.create(x, y, 'door');
-    this.door.anchor.setTo(0.5, 1);
-    this.game.physics.enable(this.door);
-    this.door.body.allowGravity = false;
-};
-
-PlayState._spawnKey = function (x, y) {
-    this.key = this.bgDecoration.create(x, y, 'key');
-    this.key.anchor.set(0.5, 0.5);
-    // enable physics to detect collisions, so the hero can pick the key up
-    this.game.physics.enable(this.key);
-    this.key.body.allowGravity = false;
-    // add a small 'up & down' animation via a tween
-    this.key.y -= 3;
-    this.game.add.tween(this.key)
-        .to({y: this.key.y + 6}, 800, Phaser.Easing.Sinusoidal.InOut)
-        .yoyo(true)
-        .loop()
-        .start();
-};

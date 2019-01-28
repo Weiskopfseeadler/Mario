@@ -1,4 +1,4 @@
-function Barrel(game, x, y) {
+/*function Barrel(game, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'barrel');
 
     // anchor
@@ -38,4 +38,4 @@ Barrel.prototype.die = function () {
     this.animations.play('die').onComplete.addOnce(function () {
         this.kill();
     }, this);
-};
+};*/

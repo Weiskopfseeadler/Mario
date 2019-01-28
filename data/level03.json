@@ -1,48 +1,42 @@
 {
   "platforms": [
-    {"image": "row", "x": 0, "y": 734, "rotate": 0},
-    {"image": "row", "x": 135, "y": 734, "rotate": 0},
-    {"image": "row", "x": 270, "y": 734, "rotate": 0},
-    {"image": "row", "x": 405, "y": 734, "rotate": 0},
-    {"image": "row", "x": 540, "y": 734, "rotate": 0},
-    {"image": "row", "x": 675, "y": 734, "rotate": 0},
+      {"image": "row", "x": 0, "y": 864, "rotate": 0},
+      {"image": "row", "x": 135, "y": 864, "rotate": 0},
+      {"image": "row", "x": 270, "y": 864, "rotate": 0},
+      {"image": "row", "x": 405, "y": 864, "rotate": 0},
+      {"image": "row", "x": 540, "y": 864, "rotate": 0},
+      {"image": "row", "x": 675, "y": 864, "rotate": 0},
+      {"image": "row", "x": 920, "y": 864, "rotate": 0},
 
-    {"image": "row", "x": 540, "y": 550, "rotate": 8},
-    {"image": "row", "x": 159, "y": 496, "rotate": 8},
-    {"image": "row", "x": -222, "y": 442, "rotate": 8},
+      {"image": "row", "x": 0, "y": 700, "rotate": 0},
+      {"image": "row", "x": 135, "y": 700, "rotate": 0},
+      {"image": "row", "x": 841, "y": 700, "rotate": 0},
 
+      {"image": "row", "x": 450, "y": 500, "rotate": 0},
+      {"image": "row", "x": 282, "y": 500, "rotate": 0},
 
-    {"image": "row", "x": 150, "y": 350, "rotate": -8},
-    {"image": "row", "x": 531, "y": 296, "rotate": -8},
-    {"image": "row", "x": 912, "y": 242, "rotate": -8},
+      {"image": "row", "x": 0, "y": 300, "rotate": 0},
+      {"image": "row", "x": 85, "y": 300, "rotate": 0},
+      {"image": "row", "x": 700, "y": 300, "rotate": 0},
+      {"image": "row", "x": 868, "y": 300, "rotate": 0},
 
-    {"image": "row", "x": 0, "y": 150, "rotate": 0},
-    {"image": "row", "x": 135, "y": 150, "rotate": 0},
-    {"image": "row", "x": 270, "y": 150, "rotate": 0},
-    {"image": "row", "x": 405, "y": 150, "rotate": 0}
+      {"image": "row", "x": 405, "y": 140, "rotate": 0},
+
+      {"image": "ladder", "x": 100, "y": 300, "rotate": 0},
+      {"image": "ladder", "x": 100, "y": 420, "rotate": 0},
+      {"image": "ladder", "x": 100, "y": 540, "rotate": 0},
+
+      {"image": "ladder", "x": 950, "y": 300, "rotate": 0},
+      {"image": "ladder", "x": 950, "y": 420, "rotate": 0},
+      {"image": "ladder", "x": 950, "y": 540, "rotate": 0},
+
+      {"image": "ladder", "x": 450, "y": 500, "rotate": 0},
+
+      {"image": "ladder", "x": 760, "y": 140, "rotate": 0}
+
   ],
 
-  "decoration": [
-    {"frame": 0, "x": 84, "y": 504}, {"frame": 1, "x": 420, "y": 504},
-    {"frame": 3, "x": 672, "y": 504}, {"frame": 4, "x": 595, "y": 462},
-    {"frame": 2, "x": 142, "y": 378}, {"frame": 1, "x": 168, "y": 378},
-    {"frame": 0, "x": 714, "y": 336},
-    {"frame": 4, "x": 420, "y": 294},
-    {"frame": 1, "x": 515, "y": 126}, {"frame": 3, "x": 525, "y": 126}
-  ],
-
-  "coins": [
-
-    {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000},
-    {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000},
-    {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000},
-    {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000},
-    {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000},
-    {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000},
-    {"x": 5000, "y": 5000}, {"x": 5000, "y": 5000}
-  ],
-
-  "hero": {"x": 21, "y": 600},
+  "hero": {"x": 21, "y": 800},
   "spiders": [{"x": 121, "y": 399}, {"x": 800, "y": 362}, {"x": 500, "y": 147}],
   "door": {"x": 5000, "y": 5000},
   "key": {"x": 5000, "y": 5000}

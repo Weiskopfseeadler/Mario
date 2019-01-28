@@ -31,8 +31,8 @@ PlayState.preload = function () {
     this.game.load.json('level:0', 'data/level03.json');
     this.game.load.json('level:1', 'data/level00.json');
     this.game.load.json('level:2', 'data/level01.json');
-    
-    
+
+
     this.game.load.image('font:numbers', 'images/numbers.png');
 
     this.game.load.image('background', 'images/pixel-castle-background.png');
@@ -48,7 +48,8 @@ PlayState.preload = function () {
     this.game.load.image('icon:coin', 'images/coin_icon.png');
     this.game.load.image('key', 'images/key.png');
     this.game.load.image('row','images/platform.png',1,1);
-   
+    this.game.load.image('ladder','images/Ladder.png');
+
     
     
     
@@ -56,7 +57,7 @@ PlayState.preload = function () {
 
     this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
     this.game.load.spritesheet('barrel', 'images/enemies.png', 42, 32);
-    this.game.load.spritesheet('hero', 'images/bing.png', 47, 64);
+    this.game.load.spritesheet('hero', 'images/MarioWalk.png', 47, 64);
     this.game.load.spritesheet('door', 'images/door.png', 65, 50);
     this.game.load.spritesheet('icon:key', 'images/key_icon.png', 34, 30);
 
@@ -79,25 +80,19 @@ PlayState.create = function () {
 
     // create level
     this.game.add.image(0, 0, 'background');
-    this.game.add.image(120, 30, 'dk');
-    this.game.add.image(20, 18, 'barrels');
+    this.game.add.image(500, 20, 'dk');
+    //this.game.add.image(20, 18, 'barrels');
     this._loadLevel(this.game.cache.getJSON(`level:${this.level}`));
-
-    // crete hud with scoreboards)
-    this._createHud();
 };
 
 PlayState.update = function () {
     this._handleCollisions();
     this._handleInput();
-
-    this.coinFont.text = `x${this.coinPickupCount}`;
-    this.keyIcon.frame = this.hasKey ? 1 : 0;
 };
 
 PlayState._handleCollisions = function () {
-    this.game.physics.arcade.collide(this.barrels, this.platforms);
-    this.game.physics.arcade.collide(this.barrels, this.enemyWalls);
+    //this.game.physics.arcade.collide(this.barrels, this.platforms);
+    //this.game.physics.arcade.collide(this.barrels, this.enemyWalls);
     this.game.physics.arcade.collide(this.hero, this.platforms);
 
     this.game.physics.arcade.overlap(this.hero, this.coins, this._onHeroVsCoin,
@@ -131,16 +126,15 @@ PlayState._loadLevel = function (data) {
     this.bgDecoration = this.game.add.group();
     this.platforms = this.game.add.group();
     this.coins = this.game.add.group();
-    this.barrels = this.game.add.group();
+    //this.barrels = this.game.add.group();
     this.enemyWalls = this.game.add.group();
     this.enemyWalls.visible = false;
 
     // spawn all platforms
     data.platforms.forEach(this._spawnPlatform, this);
     // spawn hero and enemies
-    this._spawnCharacters({hero: data.hero, barrels: data.barrels});
+    this._spawnCharacters({hero: data.hero/*, barrels: data.barrels*/});
     // spawn important objects
-    data.coins.forEach(this._spawnCoin, this);
     this._spawnDoor(data.door.x, data.door.y);
     this._spawnKey(data.key.x, data.key.y);
 
@@ -174,10 +168,10 @@ PlayState._spawnEnemyWall = function (x, y, side) {
 
 PlayState._spawnCharacters = function (data) {
     // spawn spiders
-    data.barrels.forEach(function (barrel) {
+    /*data.barrels.forEach(function (barrel) {
         let sprite = new Barrel(this.game, barrel.x, barrel.y);
         this.barrels.add(sprite);
-    }, this);
+    }, this);*/
 
     // spawn hero
     this.hero = new Hero(this.game, data.hero.x, data.hero.y);
@@ -247,32 +241,14 @@ PlayState._onHeroVsDoor = function (hero, door) {
     this.game.state.restart(true, false, { level: this.level + 1 });
 };
 
-PlayState._createHud = function () {
-    const NUMBERS_STR = '0123456789X ';
-    this.coinFont = this.game.add.retroFont('font:numbers', 20, 26,
-        NUMBERS_STR);
 
-    this.keyIcon = this.game.make.image(0, 19, 'icon:key');
-    this.keyIcon.anchor.set(0, 0.5);
-
-    let coinIcon = this.game.make.image(this.keyIcon.width + 7, 0, 'icon:coin');
-    let coinScoreImg = this.game.make.image(coinIcon.x + coinIcon.width,
-        coinIcon.height / 2, this.coinFont);
-    coinScoreImg.anchor.set(0, 0.5);
-
-    this.hud = this.game.add.group();
-    this.hud.add(coinIcon);
-    this.hud.add(coinScoreImg);
-    this.hud.add(this.keyIcon);
-    this.hud.position.set(10, 10);
-};
 
 // =============================================================================
 // entry point
 // =============================================================================
 
 window.onload = function () {
-    let game = new Phaser.Game(1028, 764, Phaser.AUTO, 'game');
+    let game = new Phaser.Game(1200, 890, Phaser.AUTO, 'game');
     game.state.add('play', PlayState);
     game.state.start('play', true, false, {level: 0});
 };
