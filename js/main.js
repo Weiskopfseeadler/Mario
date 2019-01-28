@@ -56,7 +56,7 @@ PlayState.preload = function () {
 
     this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
     this.game.load.spritesheet('barrel', 'images/PixelArt.png', 42, 32);
-    this.game.load.spritesheet('hero', 'images/bing.png', 47, 64);
+    this.game.load.spritesheet('hero', 'images/MarioWalk.png', 47, 64);
     this.game.load.spritesheet('door', 'images/door.png', 65, 50);
     this.game.load.spritesheet('icon:key', 'images/key_icon.png', 34, 30);
 
