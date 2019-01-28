@@ -56,7 +56,7 @@ PlayState.preload = function () {
     
 
     this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
-    this.game.load.spritesheet('barrel', 'images/enemies.png', 42, 32);
+    this.game.load.spritesheet('barrel', 'images/PixelArt.png', 42, 32);
     this.game.load.spritesheet('hero', 'images/MarioWalk.png', 47, 64);
     this.game.load.spritesheet('door', 'images/door.png', 65, 50);
     this.game.load.spritesheet('icon:key', 'images/key_icon.png', 34, 30);
@@ -97,7 +97,7 @@ PlayState._handleCollisions = function () {
 
     this.game.physics.arcade.overlap(this.hero, this.coins, this._onHeroVsCoin,
         null, this);
-    this.game.physics.arcade.overlap(this.hero, this.spiders,
+    this.game.physics.arcade.overlap(this.hero, this.barrels,
         this._onHeroVsEnemy, null, this);
     this.game.physics.arcade.overlap(this
         .hero, this.key, this._onHeroVsKey,
@@ -221,7 +221,6 @@ PlayState._onHeroVsCoin = function (hero, coin) {
 PlayState._onHeroVsEnemy = function (hero, enemy) {
     if (hero.body.velocity.y > 0) { // kill enemies when hero is falling
         hero.bounce();
-        enemy.die();
         this.sfx.stomp.play();
     }
     else { // game over -> restart the game

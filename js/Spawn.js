@@ -24,9 +24,9 @@ PlayState._spawnEnemyWall = function (x, y, side) {
 
 PlayState._spawnCharacters = function (data) {
     // spawn spiders
-    data.spiders.forEach(function (spider) {
-        let sprite = new Spider(this.game, spider.x, spider.y);
-        this.spiders.add(sprite);
+    data.barrels.forEach(function (Barrel) {
+        let sprite = new Barrel(this.game, Barrel.x, Barrel.y);
+        this.Barrel.add(sprite);
     }, this);
 
     // spawn hero
