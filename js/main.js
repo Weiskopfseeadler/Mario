@@ -22,7 +22,7 @@ PlayState.init = function (data) {
 
     this.coinPickupCount = 0;
     this.hasKey = false;
-    this.level = 2;
+    this.level = 0;
 };
 
 
@@ -37,19 +37,14 @@ PlayState.preload = function () {
 
     this.game.load.image('background', 'images/pixel-castle-background.png');
     this.game.load.image('dk', 'images/DoKo.png');
-    this.game.load.image('barrels', 'images/DKbarrels.png');
+
     this.game.load.image('ground', 'images/ground.png');
-    this.game.load.image('grass:8x1', 'images/grass_8x1.png');
-    this.game.load.image('grass:6x1', 'images/grass_6x1.png');
-    this.game.load.image('grass:4x1', 'images/grass_4x1.png');
-    this.game.load.image('grass:2x1', 'images/grass_2x1.png');
-    this.game.load.image('grass:1x1', 'images/grass_1x1.png');
     this.game.load.image('invisible-wall', 'images/invisible_wall.png');
     this.game.load.image('icon:coin', 'images/coin_icon.png');
     this.game.load.image('key', 'images/key.png');
     this.game.load.image('row','images/platform.png',1,1);
     this.game.load.image('ladder','images/Ladder.png');
-    this.game.load.image('barrel','images/PixelArt.png')
+    this.game.load.image('barrel','images/Barrel.png');
 
     
     
@@ -87,16 +82,13 @@ PlayState.create = function () {
 };
 
 PlayState.update = function () {
-    this.barrels.forEach(element => {
-        element.angle+=Barrel.ROLLSPEED;
-    });
     this._handleCollisions();
     this._handleInput();
 };
 
 PlayState._handleCollisions = function () {
-    this.game.physics.arcade.collide(this.barrels, this.platforms);
-    this.game.physics.arcade.collide(this.barrels, this.enemyWalls);
+    //this.game.physics.arcade.collide(this.barrels, this.platforms);
+    //this.game.physics.arcade.collide(this.barrels, this.enemyWalls);
     this.game.physics.arcade.collide(this.hero, this.platforms);
 
     this.game.physics.arcade.overlap(this.hero, this.coins, this._onHeroVsCoin,
@@ -132,19 +124,28 @@ PlayState._loadLevel = function (data) {
     this.coins = this.game.add.group();
     this.barrels = this.game.add.group();
     this.enemyWalls = this.game.add.group();
+    this.Barrelspawns = this.game.add.group();
     this.enemyWalls.visible = false;
 
     // spawn all platforms
     data.platforms.forEach(this._spawnPlatform, this);
     // spawn hero and enemies
-    this._spawnCharacters({hero: data.hero, barrels: data.barrels});
+    this._spawnCharacters({hero: data.hero});
+    this._spawnBarrels({barrels: data.barrels});
     // spawn important objects
     this._spawnDoor(data.door.x, data.door.y);
     this._spawnKey(data.key.x, data.key.y);
+    data.Barrelspawns.forEach(this._barrelspawnspan,this);
+    
+   
 
     // enable gravity
     const GRAVITY = 2400;
     this.game.physics.arcade.gravity.y = GRAVITY;
+};
+
+PlayState._barrelspawnspan = function(Barelsapwn){
+    window.setTimeout(this._spawnBarrel({"x":Barelsapwn.x,"y":Barelsapwn.y}), Barelsapwn.rate);
 };
 
 PlayState._spawnPlatform = function (platform) {
@@ -169,12 +170,24 @@ PlayState._spawnEnemyWall = function (x, y, side) {
     sprite.body.allowGravity = false;
 };
 
-PlayState._spawnCharacters = function (data) {
+PlayState._spawnBarrel = function (barrel) {
+    // spawn barrels
+
+        let sprite = new Barrel(this.game, barrel.x, barrel.y);
+        this.barrels.add(sprite);
+   
+}
+
+PlayState._spawnBarrels = function (data) {
     // spawn barrels
     data.barrels.forEach(function (barrel) {
         let sprite = new Barrel(this.game, barrel.x, barrel.y);
         this.barrels.add(sprite);
     }, this);
+};
+
+PlayState._spawnCharacters = function (data) {
+    
 
     // spawn hero
     this.hero = new Hero(this.game, data.hero.x, data.hero.y);

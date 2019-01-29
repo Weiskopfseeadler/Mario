@@ -36,7 +36,7 @@
 
   ],
 
-  "Barrelspawn":{"x": 800, "y": 362 ,"rate":2000,"direct":true},
+  "Barrelspawns":[{"x": 800, "y": 300 ,"rate":200,"direct":true}],
   "hero": {"x": 21, "y": 800},
   "barrels": [{"x": 121, "y": 399}, {"x": 800, "y": 362}, {"x": 500, "y": 147}, {"x": 120, "y": 225}],
   "door": {"x": 5000, "y": 5000},

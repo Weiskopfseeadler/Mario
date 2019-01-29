@@ -1,2 +1,4 @@
 https://mozdevs.github.io/html5-games-workshop/en/guides/platformer/initialise-phaser/
 https://phaser.io/news/2017/03/arcade-slopes-plugin-v020
+https://www.w3schools.com/js/js_timing.asp
+browser-sync start --server --files="**/*.js"
