@@ -156,8 +156,8 @@ PlayState._spawnPlatform = function (platform) {
     sprite.body.immovable = true;
     sprite.angle+=platform.rotate;
 
-    this._spawnEnemyWall(platform.x, platform.y, 'left');
-    this._spawnEnemyWall(platform.x + sprite.width, platform.y, 'right');
+    //this._spawnEnemyWall(platform.x, platform.y, 'left');
+    //this._spawnEnemyWall(platform.x + sprite.width, platform.y, 'right');
 };
 
 PlayState._spawnEnemyWall = function (x, y, side) {

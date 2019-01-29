@@ -16,7 +16,8 @@ function Barrel(game, x, y) {
 }
 
 Barrel.SPEED = 100;
-Barrel.ROLLSPEED = 2;
+Barrel.ROLLSPEED = 6;
+
 
 // inherit from Phaser.Sprite
 Barrel.prototype = Object.create(Phaser.Sprite.prototype);
@@ -26,10 +27,11 @@ Barrel.prototype.update = function () {
     // check against walls and reverse direction if necessary
     if (this.body.touching.right || this.body.blocked.right) {
         this.body.velocity.x = -Barrel.SPEED; // turn left
-        this.body.angle = -Barrel.ROLLSPEED
+        Barrel.ROLLSPEED *= -1; 
     }
     else if (this.body.touching.left || this.body.blocked.left) {
         this.body.velocity.x = Barrel.SPEED; // turn right
+        Barrel.ROLLSPEED *= -1;
     }
 };
 
