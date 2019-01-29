@@ -49,6 +49,7 @@ PlayState.preload = function () {
     this.game.load.image('key', 'images/key.png');
     this.game.load.image('row','images/platform.png',1,1);
     this.game.load.image('ladder','images/Ladder.png');
+    this.game.load.image('barrel','images/PixelArt.png')
 
     
     
@@ -56,7 +57,7 @@ PlayState.preload = function () {
     
 
     this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
-    this.game.load.spritesheet('barrel', 'images/PixelArt.png', 42, 32);
+    
     this.game.load.spritesheet('hero', 'images/MarioWalk.png', 47, 64);
     this.game.load.spritesheet('door', 'images/door.png', 65, 50);
     this.game.load.spritesheet('icon:key', 'images/key_icon.png', 34, 30);
@@ -126,14 +127,14 @@ PlayState._loadLevel = function (data) {
     this.bgDecoration = this.game.add.group();
     this.platforms = this.game.add.group();
     this.coins = this.game.add.group();
-    //this.barrels = this.game.add.group();
+    this.barrels = this.game.add.group();
     this.enemyWalls = this.game.add.group();
     this.enemyWalls.visible = false;
 
     // spawn all platforms
     data.platforms.forEach(this._spawnPlatform, this);
     // spawn hero and enemies
-    this._spawnCharacters({hero: data.hero/*, barrels: data.barrels*/});
+    this._spawnCharacters({hero: data.hero, barrels: data.barrels});
     // spawn important objects
     this._spawnDoor(data.door.x, data.door.y);
     this._spawnKey(data.key.x, data.key.y);
@@ -167,11 +168,11 @@ PlayState._spawnEnemyWall = function (x, y, side) {
 };
 
 PlayState._spawnCharacters = function (data) {
-    // spawn spiders
-    /*data.barrels.forEach(function (barrel) {
+    // spawn barrels
+    data.barrels.forEach(function (barrel) {
         let sprite = new Barrel(this.game, barrel.x, barrel.y);
         this.barrels.add(sprite);
-    }, this);*/
+    }, this);
 
     // spawn hero
     this.hero = new Hero(this.game, data.hero.x, data.hero.y);
