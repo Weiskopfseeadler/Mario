@@ -57,7 +57,7 @@ PlayState.preload = function () {
     
 
     this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
-    
+
     this.game.load.spritesheet('hero', 'images/MarioWalk.png', 47, 64);
     this.game.load.spritesheet('door', 'images/door.png', 65, 50);
     this.game.load.spritesheet('icon:key', 'images/key_icon.png', 34, 30);
@@ -87,13 +87,16 @@ PlayState.create = function () {
 };
 
 PlayState.update = function () {
+    this.barrels.forEach(element => {
+        element.angle+=Barrel.ROLLSPEED;
+    });
     this._handleCollisions();
     this._handleInput();
 };
 
 PlayState._handleCollisions = function () {
-    //this.game.physics.arcade.collide(this.barrels, this.platforms);
-    //this.game.physics.arcade.collide(this.barrels, this.enemyWalls);
+    this.game.physics.arcade.collide(this.barrels, this.platforms);
+    this.game.physics.arcade.collide(this.barrels, this.enemyWalls);
     this.game.physics.arcade.collide(this.hero, this.platforms);
 
     this.game.physics.arcade.overlap(this.hero, this.coins, this._onHeroVsCoin,
