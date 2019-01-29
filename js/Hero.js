@@ -18,6 +18,10 @@ function Hero(game, x, y) {
 Hero.prototype = Object.create(Phaser.Sprite.prototype);
 Hero.prototype.constructor = Hero;
 
+Hero.goingRight = true;
+Hero.goingLeft = false;
+Hero.idleFrame = 0;
+
 Hero.prototype.move = function (direction) {
     const SPEED = 500;
     this.body.velocity.x = direction * SPEED;

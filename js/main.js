@@ -22,7 +22,7 @@ PlayState.init = function (data) {
 
     this.coinPickupCount = 0;
     this.hasKey = false;
-    this.level = (data.level || 0) % LEVEL_COUNT;
+    this.level = 2;
 };
 
 
@@ -156,8 +156,7 @@ PlayState._spawnPlatform = function (platform) {
     sprite.body.immovable = true;
     sprite.angle+=platform.rotate;
 
-    //this._spawnEnemyWall(platform.x, platform.y, 'left');
-    //this._spawnEnemyWall(platform.x + sprite.width, platform.y, 'right');
+
 };
 
 PlayState._spawnEnemyWall = function (x, y, side) {
