@@ -22,7 +22,7 @@ PlayState.init = function (data) {
 
     this.coinPickupCount = 0;
     this.hasKey = false;
-    this.level = (data.level || 0) % LEVEL_COUNT;
+    this.level = 0;
 };
 
 
@@ -36,22 +36,23 @@ PlayState.preload = function () {
 
     this.game.load.image('background', 'images/pixel-castle-background.png');
     this.game.load.image('dk', 'images/DoKo.png');
-    this.game.load.image('barrels', 'images/DKbarrels.png');
+
     this.game.load.image('ground', 'images/ground.png');
-    this.game.load.image('grass:8x1', 'images/grass_8x1.png');
-    this.game.load.image('grass:6x1', 'images/grass_6x1.png');
-    this.game.load.image('grass:4x1', 'images/grass_4x1.png');
-    this.game.load.image('grass:2x1', 'images/grass_2x1.png');
-    this.game.load.image('grass:1x1', 'images/grass_1x1.png');
     this.game.load.image('invisible-wall', 'images/invisible_wall.png');
     this.game.load.image('icon:coin', 'images/coin_icon.png');
     this.game.load.image('key', 'images/key.png');
     this.game.load.image('row','images/platform.png',1,1);
     this.game.load.image('ladder','images/Ladder.png');
     this.game.load.image('flag','images/FinishFlag.png');
+    this.game.load.image('barrel','images/Barrel.png');
+
+
+
+
+
 
     this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
-    this.game.load.spritesheet('barrel', 'images/PixelArt.png', 42, 32);
+
     this.game.load.spritesheet('hero', 'images/MarioWalk.png', 47, 64);
     this.game.load.spritesheet('door', 'images/door.png', 65, 50);
     this.game.load.spritesheet('icon:key', 'images/key_icon.png', 34, 30);
@@ -123,20 +124,28 @@ PlayState._loadLevel = function (data) {
     this.platforms = this.game.add.group();
     this.ladders = this.game.add.group();
     this.coins = this.game.add.group();
+    this.barrels = this.game.add.group();
     this.Flag = this.game.add.group();
     //this.barrels = this.game.add.group();
     this.enemyWalls = this.game.add.group();
+    this.Barrelspawns = this.game.add.group();
     this.enemyWalls.visible = false;
 
     // spawn all platforms
     data.platforms.forEach(this._spawnPlatform, this);
     data.ladders.forEach(this._spawnLadders, this);
     // spawn hero and enemies
-    this._spawnCharacters({hero: data.hero/*, barrels: data.barrels*/});
+    this._spawnCharacters({hero: data.hero});
+    this._spawnBarrels({barrels: data.barrels});
     // spawn important objects
     this._spawnDK(data.DK.x, data.DK.y);
     this._spawnFlag(data.Flag.x, data.Flag.y);
     this._spawnKey(data.key.y, data.key.x);
+    this._spawnDoor(data.door.x, data.door.y);
+    this._spawnKey(data.key.x, data.key.y);
+    data.Barrelspawns.forEach(this._barrelspawnspan,this);
+
+
 
     // enable gravity
     const GRAVITY = 2400;
@@ -151,6 +160,10 @@ PlayState._spawnLadders = function (ladder) {
     this._spawnEnemyWall(ladder.x + sprite.width, ladder.y, 'right');
 };
 
+PlayState._barrelspawnspan = function(Barelsapwn){
+    window.setTimeout(this._spawnBarrel({"x":Barelsapwn.x,"y":Barelsapwn.y}), Barelsapwn.rate);
+};
+
 PlayState._spawnPlatform = function (platform) {
     let sprite = this.platforms.create(
         platform.x, platform.y, platform.image);
@@ -160,8 +173,7 @@ PlayState._spawnPlatform = function (platform) {
     sprite.body.immovable = true;
     sprite.angle+=platform.rotate;
 
-    this._spawnEnemyWall(platform.x, platform.y, 'left');
-    this._spawnEnemyWall(platform.x + sprite.width, platform.y, 'right');
+
 };
 
 PlayState._spawnEnemyWall = function (x, y, side) {
@@ -174,12 +186,24 @@ PlayState._spawnEnemyWall = function (x, y, side) {
     sprite.body.allowGravity = false;
 };
 
-PlayState._spawnCharacters = function (data) {
-    // spawn spiders
-    /*data.barrels.forEach(function (barrel) {
+PlayState._spawnBarrel = function (barrel) {
+    // spawn barrels
+
         let sprite = new Barrel(this.game, barrel.x, barrel.y);
         this.barrels.add(sprite);
-    }, this);*/
+
+}
+
+PlayState._spawnBarrels = function (data) {
+    // spawn barrels
+    data.barrels.forEach(function (barrel) {
+        let sprite = new Barrel(this.game, barrel.x, barrel.y);
+        this.barrels.add(sprite);
+    }, this);
+};
+
+PlayState._spawnCharacters = function (data) {
+
 
     // spawn hero
     this.hero = new Hero(this.game, data.hero.x, data.hero.y);

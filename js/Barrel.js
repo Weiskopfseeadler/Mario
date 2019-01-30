@@ -1,4 +1,4 @@
-/*function Barrel(game, x, y) {
+function Barrel(game, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'barrel');
 
     // anchor
@@ -16,6 +16,8 @@
 }
 
 Barrel.SPEED = 100;
+Barrel.ROLLSPEED = 6;
+
 
 // inherit from Phaser.Sprite
 Barrel.prototype = Object.create(Phaser.Sprite.prototype);
@@ -25,9 +27,11 @@ Barrel.prototype.update = function () {
     // check against walls and reverse direction if necessary
     if (this.body.touching.right || this.body.blocked.right) {
         this.body.velocity.x = -Barrel.SPEED; // turn left
+        Barrel.ROLLSPEED *= -1; 
     }
     else if (this.body.touching.left || this.body.blocked.left) {
         this.body.velocity.x = Barrel.SPEED; // turn right
+        Barrel.ROLLSPEED *= -1;
     }
 };
 
@@ -37,4 +41,4 @@ Barrel.prototype.die = function () {
     this.animations.play('die').onComplete.addOnce(function () {
         this.kill();
     }, this);
-};*/
+};
