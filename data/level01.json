@@ -8,14 +8,14 @@
         {"image": "row", "x": 675, "y": 864, "rotate": 0},
         {"image": "row", "x": 920, "y": 864, "rotate": 0},
 
-        {"image": "row", "x": 540, "y": 670, "rotate": 8},
-        {"image": "row", "x": 159, "y": 616, "rotate": 8},
-        {"image": "row", "x": -222, "y": 562, "rotate": 8},
+        {"image": "row", "x": 540, "y": 670, "rotate": 0},
+        {"image": "row", "x": 159, "y": 616, "rotate": 0},
+        {"image": "row", "x": -222, "y": 562, "rotate": 0},
 
 
-        {"image": "row", "x": 150, "y": 430, "rotate": -8},
-        {"image": "row", "x": 531, "y": 376, "rotate": -8},
-        {"image": "row", "x": 912, "y": 322, "rotate": -8},
+        {"image": "row", "x": 150, "y": 430, "rotate": 0},
+        {"image": "row", "x": 531, "y": 376, "rotate": 0},
+        {"image": "row", "x": 912, "y": 322, "rotate": 0},
 
         {"image": "row", "x": 0, "y": 150, "rotate": 0},
         {"image": "row", "x": 135, "y": 150, "rotate": 0},
@@ -40,10 +40,11 @@
     ],
 
     "hero": {"x": 21, "y": 800},
-    "spiders": [{"x": 121, "y": 399}, {"x": 800, "y": 362}, {"x": 500, "y": 147}],
-    "door": {"x": 5000, "y": 5000},
-    "key": {"x": 5000, "y": 5000},
-    "DK": {"x": 600, "y": 145},
-    "Flag": {"x": 50, "y": 145}
-}
 
+    "DK": {"x": 600, "y": 145},
+    "Flag": {"x": 50, "y": 145},
+
+    "Barrelspawns":[{"x": 950, "y": 300 ,"rate":2000,"direct":true}]
+    
+    
+    }
