@@ -82,7 +82,7 @@ PlayState.create = function () {
 
 PlayState.update = function () {
     this.barrels.forEach(element => {
-        element.angle+=Barrel.ROLLSPEED;
+        element.angle+=element.ROLLSPEED;
     });
     this._handleCollisions();
     this._handleInput();
@@ -130,6 +130,7 @@ PlayState._loadLevel = function (data) {
     this.enemyWalls.visible = false;
 
     // spawn all platforms
+    
     data.platforms.forEach(this._spawnPlatform, this);
     // spawn hero and enemies
     this._spawnCharacters({hero: data.hero});
@@ -169,12 +170,14 @@ PlayState._spawnLadders = function (ladder) {
 };
 
 PlayState._barrelspawnspawn = function(Barelspawn){
-   
-        window.setInterval(t,1000);
-        timer = window.setInterval(this._spawnBarrel, 10000,Barelspawn.x,Barelspawn.y,Barelspawn.direction);
-        console.log(timer);
-    
-    
+
+   // this.game.time.events.repeat(Phaser.Timer.SECOND * 2, this._creatBarrel(Barelspawn), this);
+    this.game.time.events.loop(Phaser.Timer.SECOND, this._spawnBarrel, this,Barelspawn);
+    /*window.setInterval(t,1000);
+    timer = window.setInterval(this._spawnBarrel, 1000,Barelspawn.x,Barelspawn.y,Barelspawn.direction);
+    console.log(timer);*/
+
+
 };
 
 t = function() {
@@ -203,13 +206,11 @@ PlayState._spawnEnemyWall = function (x, y, side) {
     sprite.body.allowGravity = false;
 };
 
-PlayState._spawnBarrel = function (x,y,direct) {
+PlayState._spawnBarrel = function (barrelspawn) {
     // spawn barrels
-console.log(x+y+direct);
-        let sprite = new Barrel(this.game,x, y);
-        if(direct){
-            sprite.changeDirection();
-        }
+console.log(barrelspawn);
+        let sprite = new Barrel(this.game,barrelspawn.x, barrelspawn.y);
+    
         this.barrels.add(sprite);
    // window.setTimeout(this._spawnBarrel(Barelsapwn), Barelsapwn.rate);
    
@@ -217,11 +218,22 @@ console.log(x+y+direct);
 
 PlayState._spawnBarrels = function (data) {
     // spawn barrels
+    console.log(data);
     data.barrels.forEach(function (barrel) {
         let sprite = new Barrel(this.game, barrel.x, barrel.y);
         this.barrels.add(sprite);
     }, this);
 };
+
+PlayState._creatBarrel = function (data) {
+    // spawn barrels
+    let sprite= new Barrel(this.game, data.x, data.y);
+  
+    return sprite;
+    // window.setTimeout(this._spawnBarrel(Barelsapwn), Barelsapwn.rate);
+
+};
+
 
 PlayState._spawnCharacters = function (data) {
     

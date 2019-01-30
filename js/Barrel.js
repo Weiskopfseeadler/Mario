@@ -1,3 +1,7 @@
+Barrel.SPEED = 200;
+Barrel.ROLLSPEED = Barrel.SPEED/20 ;
+
+
 function Barrel(game, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'barrel');
     // anchor
@@ -10,11 +14,10 @@ function Barrel(game, x, y) {
     this.body.collideWorldBounds = true;
     
     this.body.velocity.x = Barrel.SPEED;
+    this.ROLLSPEED = Barrel.ROLLSPEED
     console.log(this);
 }
 
-Barrel.SPEED = 400;
-Barrel.ROLLSPEED = /*Barrel.SPEED/10*/10 ;
 
 
 // inherit from Phaser.Sprite
@@ -30,13 +33,17 @@ Barrel.prototype.changeDirection = function () {
 
 Barrel.prototype.update = function () {
     // check against walls and reverse direction if necessary
+    
+    
     if (this.body.touching.right || this.body.blocked.right) {
         this.body.velocity.x = -Barrel.SPEED; // turn left        
-        Barrel.ROLLSPEED *= -1; 
+        this.ROLLSPEED *= -1; 
+        console.log("CH")
     }
     else if (this.body.touching.left || this.body.blocked.left) {
         this.body.velocity.x = Barrel.SPEED; // turn right
-        Barrel.ROLLSPEED *= -1;
+        this.ROLLSPEED *= -1;
+        console.log("CH")
     }
 };
 
