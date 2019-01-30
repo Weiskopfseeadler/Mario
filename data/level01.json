@@ -23,5 +23,27 @@
         {"image": "row", "x": 405, "y": 150, "rotate": 0}
     ],
 
-    "hero": {"x": 21, "y": 600}
+    "ladders": [
+
+        {"image": "ladder", "x": 100, "y": 300, "rotate": 0},
+        {"image": "ladder", "x": 100, "y": 420, "rotate": 0},
+        {"image": "ladder", "x": 100, "y": 540, "rotate": 0},
+
+        {"image": "ladder", "x": 950, "y": 300, "rotate": 0},
+        {"image": "ladder", "x": 950, "y": 420, "rotate": 0},
+        {"image": "ladder", "x": 950, "y": 540, "rotate": 0},
+
+        {"image": "ladder", "x": 450, "y": 500, "rotate": 0},
+
+        {"image": "ladder", "x": 760, "y": 140, "rotate": 0}
+
+    ],
+
+    "hero": {"x": 21, "y": 800},
+    "spiders": [{"x": 121, "y": 399}, {"x": 800, "y": 362}, {"x": 500, "y": 147}],
+    "door": {"x": 5000, "y": 5000},
+    "key": {"x": 5000, "y": 5000},
+    "DK": {"x": 600, "y": 145},
+    "Flag": {"x": 50, "y": 145}
 }
+

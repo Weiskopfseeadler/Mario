@@ -2,7 +2,7 @@
 
 PlayState = {};
 
-const LEVEL_COUNT = 1;
+const LEVEL_COUNT = 3;
 
 PlayState.init = function (data) {
     this.game.renderer.renderSession.roundPixels = true;
@@ -29,9 +29,8 @@ PlayState.init = function (data) {
 
 PlayState.preload = function () {
     this.game.load.json('level:0', 'data/level03.json');
-    this.game.load.json('level:1', 'data/level00.json');
-    this.game.load.json('level:2', 'data/level01.json');
-
+    this.game.load.json('level:1', 'data/level01.json');
+    this.game.load.json('level:2', 'data/level00.json');
 
     this.game.load.image('font:numbers', 'images/numbers.png');
 
@@ -49,11 +48,7 @@ PlayState.preload = function () {
     this.game.load.image('key', 'images/key.png');
     this.game.load.image('row','images/platform.png',1,1);
     this.game.load.image('ladder','images/Ladder.png');
-
-    
-    
-    
-    
+    this.game.load.image('flag','images/FinishFlag.png');
 
     this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
     this.game.load.spritesheet('barrel', 'images/PixelArt.png', 42, 32);
@@ -80,7 +75,6 @@ PlayState.create = function () {
 
     // create level
     this.game.add.image(0, 0, 'background');
-    this.game.add.image(500, 20, 'dk');
     //this.game.add.image(20, 18, 'barrels');
     this._loadLevel(this.game.cache.getJSON(`level:${this.level}`));
 };
@@ -96,6 +90,8 @@ PlayState._handleCollisions = function () {
     this.game.physics.arcade.collide(this.hero, this.platforms);
 
     this.game.physics.arcade.overlap(this.hero, this.coins, this._onHeroVsCoin,
+        null, this);
+    this.game.physics.arcade.overlap(this.hero, this.Flag, this._onHeroVsFinishFlag,
         null, this);
     this.game.physics.arcade.overlap(this.hero, this.barrels,
         this._onHeroVsEnemy, null, this);
@@ -125,22 +121,34 @@ PlayState._loadLevel = function (data) {
     // create all the groups/layers that we need
     this.bgDecoration = this.game.add.group();
     this.platforms = this.game.add.group();
+    this.ladders = this.game.add.group();
     this.coins = this.game.add.group();
+    this.Flag = this.game.add.group();
     //this.barrels = this.game.add.group();
     this.enemyWalls = this.game.add.group();
     this.enemyWalls.visible = false;
 
     // spawn all platforms
     data.platforms.forEach(this._spawnPlatform, this);
+    data.ladders.forEach(this._spawnLadders, this);
     // spawn hero and enemies
     this._spawnCharacters({hero: data.hero/*, barrels: data.barrels*/});
     // spawn important objects
-    this._spawnDoor(data.door.x, data.door.y);
-    this._spawnKey(data.key.x, data.key.y);
+    this._spawnDK(data.DK.x, data.DK.y);
+    this._spawnFlag(data.Flag.x, data.Flag.y);
+    this._spawnKey(data.key.y, data.key.x);
 
     // enable gravity
     const GRAVITY = 2400;
     this.game.physics.arcade.gravity.y = GRAVITY;
+};
+
+PlayState._spawnLadders = function (ladder) {
+    let sprite = this.ladders.create(
+        ladder.x, ladder.y, ladder.image);
+
+    this._spawnEnemyWall(ladder.x, ladder.y, 'left');
+    this._spawnEnemyWall(ladder.x + sprite.width, ladder.y, 'right');
 };
 
 PlayState._spawnPlatform = function (platform) {
@@ -189,11 +197,17 @@ PlayState._spawnCoin = function (coin) {
     sprite.animations.play('rotate');
 };
 
-PlayState._spawnDoor = function (x, y) {
-    this.door = this.bgDecoration.create(x, y, 'door');
-    this.door.anchor.setTo(0.5, 1);
-    this.game.physics.enable(this.door);
-    this.door.body.allowGravity = false;
+PlayState._spawnDK = function (x, y) {
+    this.DK = this.bgDecoration.create(x, y, 'dk');
+    this.DK.anchor.setTo(0.5, 1);
+    this.game.physics.enable(this.DK);
+    this.DK.body.allowGravity = false;
+};
+PlayState._spawnFlag = function (x, y) {
+    this.Flag = this.bgDecoration.create(x, y, 'flag');
+    this.Flag.anchor.setTo(0.5, 1);
+    this.game.physics.enable(this.Flag);
+    this.Flag.body.allowGravity = false;
 };
 
 PlayState._spawnKey = function (x, y) {
@@ -211,6 +225,10 @@ PlayState._spawnKey = function (x, y) {
         .start();
 };
 
+PlayState._onHeroVsFinishFlag = function () {
+    console.log(this.level);
+    this.game.state.restart(true, false, { level: this.level + 1 });
+};
 
 PlayState._onHeroVsCoin = function (hero, coin) {
     this.sfx.coin.play();
