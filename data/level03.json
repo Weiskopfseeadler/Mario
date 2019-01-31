@@ -15,8 +15,8 @@
     {"image": "row", "x": 450, "y": 500, "rotate": 0},
     {"image": "row", "x": 282, "y": 500, "rotate": 0},
 
-    {"image": "row", "x": 0, "y": 300, "rotate": 0},
-    {"image": "row", "x": 85, "y": 300, "rotate": 0},
+    {"image": "row", "x": 0, "y": 300, "rotate": 1},
+    {"image": "row", "x": 85, "y": 300, "rotate": 2},
     {"image": "row", "x": 700, "y": 300, "rotate": 0},
     {"image": "row", "x": 868, "y": 300, "rotate": 0},
 
@@ -42,9 +42,11 @@
 
 ],
 
-  "Barrelspawns":[{"x": 121, "y": 399 ,"rate":1000,"direct":3},{"x": 800, "y": 362 ,"rate":2000,"direction":2}],
+  "Barrelspawns":[{"x": 121, "y": 399 ,"rate":1000,"direction":3},{"x": 800, "y": 362 ,"rate":2000,"direction":2}],
   "hero": {"x": 21, "y": 800},
   "barrels": [{"x": 121, "y": 399}, {"x": 800, "y": 362}, {"x": 500, "y": 147}, {"x": 120, "y": 225}],
   "DK": {"x": 500, "y": 245},
-  "Flag": {"x": 50, "y": 145}
+  "Flag": {"x": 50, "y": 145},
+  "enemyWalls":[{"x":0,"y":864},{"x":1200,"y":864}]
+  
 }

@@ -126,7 +126,7 @@ PlayState._loadLevel = function (data) {
     this.enemyWalls = this.game.add.group();
     this.Barrelspawns = this.game.add.group();
     this.ladders = this.game.add.group();
-
+     
     this.Flag = this.game.add.group();
     this.enemyWalls.visible = false;
 
@@ -142,8 +142,8 @@ PlayState._loadLevel = function (data) {
     this._spawnFlag(data.Flag.x, data.Flag.y);
     data.Barrelspawns.forEach(this._barrelspawnspawn,this);
     data.ladders.forEach(this._spawnLadders,this);
-   
-
+   data.invisiblewalls.forEach(this._spawnEnemyWall,this);
+    
     // enable gravity
     const GRAVITY = 2400;
     this.game.physics.arcade.gravity.y = GRAVITY;
@@ -208,13 +208,19 @@ PlayState._spawnBarrel = function (barrelspawn) {
     // spawn barrels
        console.log(barrelspawn);
        var sw=true;
+    console.log(this.game);
     let sprite = new Barrel(this.game, barrelspawn.x, barrelspawn.y);
         switch (barrelspawn.direction) {
             case 1:break;
             case 2: sprite.changeDirection();break;
             case 3: if (sw){
                 sprite.changeDirection();
-            } ;break;
+            };break;
+            case 4: if (sw){
+                sprite.changeDirection();
+            } ;            
+            sprite.x=Math.floor((Math.random() * this.game.width) + 1);
+                break;
                 
         }    
     
@@ -280,6 +286,9 @@ PlayState._onHeroVsFinishFlag = function () {
     this.game.state.restart(true, false, { level: this.level + 1 });
 };
 
+PlayState._onEnemyVsWall=function (enemy,wall) {
+    enemy.kill();
+}
 
 
 // =============================================================================
