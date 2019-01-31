@@ -5,6 +5,6 @@ cinst nodejs.install;
  npm install http-server -g;
  http-server;
  echo ;
- echo "Ip in adress zeile des Browsers Eingeben eingeben";
+ echo "Ip in adress zeile des Browsers Eingeben eingeben" ;
  
  
