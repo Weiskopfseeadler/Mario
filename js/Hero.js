@@ -53,9 +53,13 @@ Hero.prototype.bounce = function () {
     this.body.velocity.y = -BOUNCE_SPEED;
 };
 
-Hero.prototype.climb = function () {
+Hero.prototype.climb = function (bool) {
     const CLIMB_SPEED = this.SPEED;
-    this.body.velocity.x = -CLIMB_SPEED;
+    if(!bool){
+        this.body.velocity.x = -CLIMB_SPEED;
+    }
+    this.body.velocity.x = CLIMB_SPEED;
+    
     
 }
 

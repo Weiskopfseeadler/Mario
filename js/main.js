@@ -279,7 +279,7 @@ PlayState._onHeroVsEnemy = function (hero, enemy) {
 PlayState._onHeroVsLadder = function (hero, ladder) {
     //
     if(this.hero.x == ladder.x){
-        this.game.physics = null;
+        this.hero.x = ladder.x;
         hero.climb();
     }
     
