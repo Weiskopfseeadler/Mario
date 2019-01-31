@@ -14,6 +14,6 @@
     ],
     
     "hero": {"x": 21, "y": 525},
-    "Barrelspawns":[{"x": 950, "y": 300 ,"rate":2000,"direct":true}]
+    "Barrelspawns":[{"x": 950, "y": 300 ,"rate":2000,"direct":3}]
 
 }
