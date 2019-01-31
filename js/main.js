@@ -134,7 +134,7 @@ PlayState._loadLevel = function (data) {
     data.platforms.forEach(this._spawnPlatform, this);
     // spawn hero and enemies
     this._spawnCharacters({hero: data.hero});
-    this._spawnBarrels({barrels: data.barrels});
+   // this._spawnBarrels({barrels: data.barrels});
     // spawn important objects
 
     //this._spawnDK(data.DK.x, data.DK.y);
