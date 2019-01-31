@@ -27,7 +27,7 @@ Barrel.prototype.changeDirection = function () {
 
 Barrel.prototype.update = function () {
    
-    
+     
     if (this.body.touching.right || this.body.blocked.right) {
         this.body.velocity.x = -Barrel.SPEED;      
         this.ROLLSPEED *= -1; 

@@ -2,7 +2,9 @@
 
 PlayState = {};
 PlayState.barrelcollision = true;
+PlayState.Barrelcount = 0;
 const LEVEL_COUNT = 3;
+
 
 PlayState.init = function (data) {
     this.game.renderer.renderSession.roundPixels = true;
@@ -69,7 +71,13 @@ PlayState.create = function () {
 PlayState.update = function () {
     this.barrels.forEach(element => {
         element.angle+=element.ROLLSPEED;
+        
+        if (this.barrelcollision!=true){
+            element.body.collideWorldBounds = false;
+        } 
     });
+    
+    
     this._handleCollisions();
     this._handleInput();
 };
@@ -99,7 +107,7 @@ PlayState._loadLevel = function (data) {
     this.ladders = this.game.add.group();     
     this.Flag = this.game.add.group();
     console.log(data);
-    this.barrelcollision=data.barrelcollision;
+    this.barrelcollision=data.leveloptionen.barrelcollision;
     
     
  
@@ -107,7 +115,7 @@ PlayState._loadLevel = function (data) {
     this._spawnCharacters({hero: data.hero});
 
 
-    this._spawnDK(data.DK.x, data.DK.y);
+   // this._spawnDK(data.DK.x, data.DK.y);
     this._spawnFlag(data.Flag.x, data.Flag.y);
     data.platforms.forEach(this._spawnPlatform, this);
     data.Barrelspawns.forEach(this._barrelspawnspawn,this);    
@@ -140,7 +148,7 @@ PlayState._spawnLadders = function (ladder) {
 
 PlayState._barrelspawnspawn = function(Barelspawn){
 
-   
+    this._spawnBarrel(Barelspawn);   
     this.game.time.events.loop(Barelspawn.rate, this._spawnBarrel, this,Barelspawn);
     
 
@@ -176,18 +184,19 @@ PlayState._spawnBarrel = function (barrelspawn) {
        console.log(barrelspawn);
        var sw=true;
     console.log(this.game);
+    this.Barrelcount +=1;
     let sprite = new Barrel(this.game, barrelspawn.x, barrelspawn.y);
         switch (barrelspawn.direction) {
             case 1:break;
             case 2: sprite.changeDirection();break;
             case 3: if (sw){
                 sprite.changeDirection();
-            };break;
-            case 4: if (sw){
-                sprite.changeDirection();
-            } ;            
+            };sw= !sw;break;
+            case 4: 
+            Barrel.SPEED=0;     
             sprite.x=Math.floor((Math.random() * this.game.width) + 1);
                 break;
+                
                 
         }    
     
@@ -222,12 +231,12 @@ PlayState._spawnCharacters = function (data) {
 PlayState._handleCollisions = function () {
 
     this.game.physics.arcade.collide(this.hero, this.platforms);
-
-    if (this.barrelcollision) {
+            
+    if (this.barrelcollision===true) {
         
         this.game.physics.arcade.collide(this.barrels, this.platforms);
 
-        this.game.physics.arcade.collide(this.barrels, this.enemyWalls, this._onBarrelVsWall, null, this);
+        this.game.physics.arcade.collide(this.barrels, this.enemyWalls);
     }
 
     this.game.physics.arcade.overlap(this.hero, this.Flag,  this._onHeroVsFinishFlag,
@@ -249,7 +258,7 @@ PlayState._onHeroVsEnemy = function (hero, barrel) {
 
 PlayState._onHeroVsLadder = function (hero, ladder) {
     //
-    if(this.hero.x == ladder.x){
+    if(this.hero.x === ladder.x){
         this.hero.x = ladder.x;
         hero.climb();
     }

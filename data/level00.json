@@ -12,11 +12,11 @@
 
     "ladders": [
 
-        {"image": "ladder", "x": 5000, "y": 500, "rotate": 0}
+       
 
     ],
 
-    "Barrelspawns":[{"x": 500, "y": 0 ,"rate":4000,"direction":4}],
+    "Barrelspawns":[{"x": 300, "y": 0 ,"rate":500,"direction":4}],
     "hero": {"x": 21, "y": 800},
     "DK": {"x": 10000, "y": 8000},
     "Flag": {"x": 1000, "y": 8000},
