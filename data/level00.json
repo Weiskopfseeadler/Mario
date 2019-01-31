@@ -20,6 +20,7 @@
     "hero": {"x": 21, "y": 800},
     "DK": {"x": 10000, "y": 8000},
     "Flag": {"x": 1000, "y": 8000},
-    "enemyWalls":[{"x":0,"y":864},{"x":1200,"y":864}]
+    "enemyWalls":[{"x":0,"y":864},{"x":1200,"y":864}],
+  "leveloptionen":{"barrelcollision":false}
 
 }

@@ -1,7 +1,7 @@
 
 
 PlayState = {};
-
+PlayState.barrelcollision = true;
 const LEVEL_COUNT = 3;
 
 PlayState.init = function (data) {
@@ -37,7 +37,7 @@ PlayState.preload = function () {
     this.game.load.image('background', 'images/pixel-castle-background.png');
     this.game.load.image('dk', 'images/DoKo.png');
     this.game.load.image('ground', 'images/ground.png');
-    this.game.load.image('invisible-wall', 'images/invisible_wall.png');
+    this.game.load.image('enemyWall', 'images/invisible_wall.png');
     this.game.load.image('row','images/platform.png',1,1);
     this.game.load.image('ladder','images/Ladder.png');
     this.game.load.image('barrel','images/Barrel.png');
@@ -61,7 +61,9 @@ PlayState.create = function () {
     this.game.add.image(0, 0, 'background');
     this.game.add.image(500, 20, 'dk');
     //this.game.add.image(20, 18, 'barrels');
+    
     this._loadLevel(this.game.cache.getJSON(`level:${this.level}`));
+    
 };
 
 PlayState.update = function () {
@@ -96,7 +98,9 @@ PlayState._loadLevel = function (data) {
     this.Barrelspawns = this.game.add.group();
     this.ladders = this.game.add.group();     
     this.Flag = this.game.add.group();
-    this.enemyWalls.visible = true;
+    console.log(data);
+    this.barrelcollision=data.barrelcollision;
+    
     
  
 
@@ -157,13 +161,14 @@ PlayState._spawnPlatform = function (platform) {
 
 
 PlayState._spawnEnemyWall = function (x, y, side) {
-    let sprite = this.enemyWalls.create(x, y, 'invisible-wall');
+    let sprite = this.enemyWalls.create(x, y, 'enemyWall');
     // anchor and y displacement
     sprite.anchor.set(side === 'left' ? 1 : 0, 1);
     // physic properties
     this.game.physics.enable(sprite);
     sprite.body.immovable = true;
     sprite.body.allowGravity = false;
+    this.enemyWalls.add(sprite);
 };
 
 PlayState._spawnBarrel = function (barrelspawn) {
@@ -218,10 +223,12 @@ PlayState._handleCollisions = function () {
 
     this.game.physics.arcade.collide(this.hero, this.platforms);
 
-    this.game.physics.arcade.collide(this.barrels, this.platforms);
+    if (this.barrelcollision) {
+        
+        this.game.physics.arcade.collide(this.barrels, this.platforms);
 
-    this.game.physics.arcade.collide(this.barrels, this.enemyWalls,this._onBarrelVsWall,null,this);
-
+        this.game.physics.arcade.collide(this.barrels, this.enemyWalls, this._onBarrelVsWall, null, this);
+    }
 
     this.game.physics.arcade.overlap(this.hero, this.Flag,  this._onHeroVsFinishFlag,
         null, this);
@@ -234,15 +241,9 @@ PlayState._handleCollisions = function () {
 
 
 PlayState._onHeroVsEnemy = function (hero, barrel) {
-    if (hero.body.velocity.y > 0) { // kill enemies when hero is falling
-        hero.bounce();
-        barrel.die();
-        this.sfx.stomp.play();
-    }
-    else { // game over -> restart the game
         this.sfx.stomp.play();
         this.game.state.restart(true, false, {level: this.level});
-    }
+    
 };
 
 
