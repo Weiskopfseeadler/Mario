@@ -44,7 +44,7 @@
     "DK": {"x": 600, "y": 145},
     "Flag": {"x": 50, "y": 145},
 
-    "Barrelspawns":[{"x": 950, "y": 300 ,"rate":2000,"direct":true}]
+    "Barrelspawns":[{"x": 950, "y": 300 ,"rate":2000,"direct":1}]
     
     
     }

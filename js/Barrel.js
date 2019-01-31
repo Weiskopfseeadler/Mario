@@ -14,8 +14,8 @@ function Barrel(game, x, y) {
     this.body.collideWorldBounds = true;
     
     this.body.velocity.x = Barrel.SPEED;
-    this.ROLLSPEED = Barrel.ROLLSPEED
-    console.log(this);
+    this.ROLLSPEED = Barrel.ROLLSPEED;
+    //console.log(this);
 }
 
 
@@ -27,6 +27,7 @@ Barrel.prototype.constructor = Barrel;
 Barrel.prototype.changeDirection = function () {
     // check against walls and reverse direction if necessary
   
+        this.ROLLSPEED*= -1;
         this.body.velocity.x *= -1;
        };
 
@@ -38,12 +39,12 @@ Barrel.prototype.update = function () {
     if (this.body.touching.right || this.body.blocked.right) {
         this.body.velocity.x = -Barrel.SPEED; // turn left        
         this.ROLLSPEED *= -1; 
-        console.log("CH")
+       // console.log("CH")
     }
     else if (this.body.touching.left || this.body.blocked.left) {
         this.body.velocity.x = Barrel.SPEED; // turn right
         this.ROLLSPEED *= -1;
-        console.log("CH")
+        //console.log("CH")
     }
 };
 

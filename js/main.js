@@ -104,6 +104,7 @@ PlayState._handleCollisions = function () {
 
 };
 
+
 PlayState._handleInput = function () {
     if (this.keys.left.isDown) { // move hero left
         this.hero.move(-1);
@@ -140,7 +141,7 @@ PlayState._loadLevel = function (data) {
     //this._spawnDK(data.DK.x, data.DK.y);
     this._spawnFlag(data.Flag.x, data.Flag.y);
     data.Barrelspawns.forEach(this._barrelspawnspawn,this);
-    
+    data.ladders.forEach(this._spawnLadders,this);
    
 
     // enable gravity
@@ -171,17 +172,14 @@ PlayState._spawnLadders = function (ladder) {
 
 PlayState._barrelspawnspawn = function(Barelspawn){
 
-   // this.game.time.events.repeat(Phaser.Timer.SECOND * 2, this._creatBarrel(Barelspawn), this);
-    this.game.time.events.loop(Phaser.Timer.SECOND, this._spawnBarrel, this,Barelspawn);
-    /*window.setInterval(t,1000);
-    timer = window.setInterval(this._spawnBarrel, 1000,Barelspawn.x,Barelspawn.y,Barelspawn.direction);
-    console.log(timer);*/
-
+   
+    this.game.time.events.loop(Barelspawn.rate, this._spawnBarrel, this,Barelspawn);
+    
 
 };
 
 t = function() {
-    console.log("Hallo");
+    //console.log("Hallo");
 };
 
 PlayState._spawnPlatform = function (platform) {
@@ -208,31 +206,32 @@ PlayState._spawnEnemyWall = function (x, y, side) {
 
 PlayState._spawnBarrel = function (barrelspawn) {
     // spawn barrels
-console.log(barrelspawn);
-        let sprite = new Barrel(this.game,barrelspawn.x, barrelspawn.y);
+       console.log(barrelspawn);
+       var sw=true;
+    let sprite = new Barrel(this.game, barrelspawn.x, barrelspawn.y);
+        switch (barrelspawn.direction) {
+            case 1:break;
+            case 2: sprite.changeDirection();break;
+            case 3: if (sw){
+                sprite.changeDirection();
+            } ;break;
+                
+        }    
     
         this.barrels.add(sprite);
-   // window.setTimeout(this._spawnBarrel(Barelsapwn), Barelsapwn.rate);
+
    
 };
 
 PlayState._spawnBarrels = function (data) {
     // spawn barrels
-    console.log(data);
+    
     data.barrels.forEach(function (barrel) {
         let sprite = new Barrel(this.game, barrel.x, barrel.y);
         this.barrels.add(sprite);
     }, this);
 };
 
-PlayState._creatBarrel = function (data) {
-    // spawn barrels
-    let sprite= new Barrel(this.game, data.x, data.y);
-  
-    return sprite;
-    // window.setTimeout(this._spawnBarrel(Barelsapwn), Barelsapwn.rate);
-
-};
 
 
 PlayState._spawnCharacters = function (data) {
@@ -277,7 +276,7 @@ PlayState._onHeroVsDoor = function (hero, door) {
 };
 
 PlayState._onHeroVsFinishFlag = function () {
-    console.log(this.level);
+    //console.log(this.level);
     this.game.state.restart(true, false, { level: this.level + 1 });
 };
 

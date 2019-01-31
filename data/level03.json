@@ -42,7 +42,7 @@
 
 ],
 
-  "Barrelspawns":[{"x": 121, "y": 399 ,"rate":1000,"direct":false},{"x": 121, "y": 399 ,"rate":1000,"direct":true}],
+  "Barrelspawns":[{"x": 121, "y": 399 ,"rate":1000,"direct":1},{"x": 800, "y": 362 ,"rate":2000,"direction":2}],
   "hero": {"x": 21, "y": 800},
   "barrels": [{"x": 121, "y": 399}, {"x": 800, "y": 362}, {"x": 500, "y": 147}, {"x": 120, "y": 225}],
   "DK": {"x": 500, "y": 245},
