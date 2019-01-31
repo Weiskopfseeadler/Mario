@@ -1,19 +1,51 @@
 {
     "platforms": [
-        {"image": "ground", "x": 0, "y": 546},
-        {"image": "grass:4x1", "x": 420, "y": 420}
+        {"image": "row", "x": 0, "y": 864, "rotate": 0},
+        {"image": "row", "x": 135, "y": 864, "rotate": 0},
+        {"image": "row", "x": 270, "y": 864, "rotate": 0},
+        {"image": "row", "x": 405, "y": 864, "rotate": 0},
+        {"image": "row", "x": 540, "y": 864, "rotate": 0},
+        {"image": "row", "x": 675, "y": 864, "rotate": 0},
+        {"image": "row", "x": 920, "y": 864, "rotate": 0},
+
+        {"image": "row", "x": 0, "y": 700, "rotate": 0},
+        {"image": "row", "x": 135, "y": 700, "rotate": 0},
+        {"image": "row", "x": 841, "y": 700, "rotate": 0},
+
+        {"image": "row", "x": 450, "y": 500, "rotate": 0},
+        {"image": "row", "x": 282, "y": 500, "rotate": 0},
+
+        {"image": "row", "x": 0, "y": 300, "rotate": 0},
+        {"image": "row", "x": 85, "y": 300, "rotate": 0},
+        {"image": "row", "x": 700, "y": 300, "rotate": 0},
+        {"image": "row", "x": 868, "y": 300, "rotate": 0},
+
+        {"image": "row", "x": 405, "y": 140, "rotate": 0},
+
+        {"image": "row", "x": -250, "y": 140, "rotate": 0}
+
     ],
-    "decoration": [
-        {"frame": 2, "x": 630, "y": 504},
-        {"frame": 2, "x": 663, "y": 504},
-        {"frame": 2, "x": 697, "y": 504},
-        {"frame": 3, "x": 756, "y": 504},
-        {"frame": 1, "x": 84, "y": 504},
-        {"frame": 0, "x": 252, "y": 504},
-        {"frame": 4, "x": 462, "y": 378}
+
+    "ladders": [
+
+        {"image": "ladder", "x": 100, "y": 300, "rotate": 0},
+        {"image": "ladder", "x": 100, "y": 420, "rotate": 0},
+        {"image": "ladder", "x": 100, "y": 540, "rotate": 0},
+
+        {"image": "ladder", "x": 950, "y": 300, "rotate": 0},
+        {"image": "ladder", "x": 950, "y": 420, "rotate": 0},
+        {"image": "ladder", "x": 950, "y": 540, "rotate": 0},
+
+        {"image": "ladder", "x": 450, "y": 500, "rotate": 0},
+
+        {"image": "ladder", "x": 760, "y": 140, "rotate": 0}
+
     ],
-    
-    "hero": {"x": 21, "y": 525},
-    "Barrelspawns":[{"x": 950, "y": 300 ,"rate":2000,"direct":3}]
+
+    "Barrelspawns":[{"x": 500, "y": 100 ,"rate":4000,"direction":2},{"x": 650, "y": 100 ,"rate":4000,"direction":1}],
+    "hero": {"x": 21, "y": 800},
+    "DK": {"x": 500, "y": 245},
+    "Flag": {"x": 50, "y": 145},
+    "enemyWalls":[{"x":0,"y":864},{"x":1200,"y":864}]
 
 }

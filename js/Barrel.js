@@ -1,4 +1,4 @@
-Barrel.SPEED = 200;
+Barrel.SPEED = 400;
 Barrel.ROLLSPEED = Barrel.SPEED/20 ;
 
 
