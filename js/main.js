@@ -94,8 +94,8 @@ PlayState._handleCollisions = function () {
     this.game.physics.arcade.collide(this.hero, this.platforms);
 
     this.game.physics.arcade.collide(this.barrels, this.platforms);
-    this.game.physics.arcade.collide(this.barrels, this.enemyWalls);
-    this.game.physics.arcade.overlap(this.hero, this.Flag, this._onHeroVsFinishFlag,
+   // this.game.physics.arcade.collide(this.barrels, this.enemyWalls,this._onEnemyVsWall,this,null);
+    this.game.physics.arcade.overlap(this.hero, this.Flag,  this._onHeroVsFinishFlag,
         null, this);
 
 
@@ -142,7 +142,7 @@ PlayState._loadLevel = function (data) {
     this._spawnFlag(data.Flag.x, data.Flag.y);
     data.Barrelspawns.forEach(this._barrelspawnspawn,this);
     data.ladders.forEach(this._spawnLadders,this);
-   data.invisiblewalls.forEach(this._spawnEnemyWall,this);
+    data.enemyWalls.forEach(this._spawnEnemyWall,this);
     
     // enable gravity
     const GRAVITY = 2400;
