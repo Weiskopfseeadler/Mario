@@ -32,8 +32,8 @@ PlayState.init = function (data) {
 PlayState.preload = function () {
 
     this.game.load.json('level:2', 'data/level03.json');
-    this.game.load.json('level:1', 'data/level00.json');	    this.game.load.json('level:1', 'data/level01.json');
-    this.game.load.json('level:0', 'data/level01.json');	    this.game.load.json('level:2', 'data/level00.json');
+    this.game.load.json('level:0', 'data/level00.json');
+    this.game.load.json('level:1', 'data/level01.json');
 
 
     this.game.load.image('font:numbers', 'images/numbers.png');
