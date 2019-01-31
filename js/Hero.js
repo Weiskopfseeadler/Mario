@@ -10,6 +10,7 @@ function Hero(game, x, y) {
     this.animations.add('stop', [16]);
     this.animations.add('run', [9,10, 11], 8, true); // 8fps looped
     this.animations.add('jump', [3]);
+    this.animations.add('climb', [3]);
     this.animations.add('fall', [4]);
     console.log(this.animation);
 }
@@ -21,6 +22,7 @@ Hero.prototype.constructor = Hero;
 Hero.goingRight = true;
 Hero.goingLeft = false;
 Hero.idleFrame = 0;
+Hero.onLadder = false;
 
 Hero.prototype.move = function (direction) {
     const SPEED = 500;
@@ -51,6 +53,12 @@ Hero.prototype.bounce = function () {
     this.body.velocity.y = -BOUNCE_SPEED;
 };
 
+Hero.prototype.climb = function () {
+    const CLIMB_SPEED = this.SPEED;
+    this.body.velocity.x = -CLIMB_SPEED;
+    
+}
+
 Hero.prototype.update = function () {
     // update sprite animation, if it needs changing
     let animationName = this._getAnimationName();
@@ -61,6 +69,11 @@ Hero.prototype.update = function () {
 
 Hero.prototype._getAnimationName = function () {
     let name = 'stop'; // default animation
+
+    //climbing
+    if(this.body.onLadder){
+        name='climb'
+    }
 
     // jumping
     if (this.body.velocity.y < 0) {

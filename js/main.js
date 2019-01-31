@@ -97,7 +97,7 @@ PlayState._handleCollisions = function () {
     this.game.physics.arcade.collide(this.barrels, this.enemyWalls);
     this.game.physics.arcade.overlap(this.hero, this.Flag, this._onHeroVsFinishFlag,
         null, this);
-
+    this.game.physics.arcade.overlap(this.hero,this.ladder,this._onHeroVsLadder,null,this);
 
     this.game.physics.arcade.overlap(this.hero, this.barrels,
         this._onHeroVsEnemy, null, this);
@@ -270,9 +270,13 @@ PlayState._onHeroVsEnemy = function (hero, enemy) {
 };
 
 
-PlayState._onHeroVsDoor = function (hero, door) {
-    this.sfx.door.play();
-    this.game.state.restart(true, false, { level: this.level + 1 });
+PlayState._onHeroVsLadder = function (hero, ladder) {
+    //
+    if(this.hero.x == ladder.x){
+        this.game.physics = null;
+        hero.climb();
+    }
+    
 };
 
 PlayState._onHeroVsFinishFlag = function () {
