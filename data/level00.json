@@ -6,46 +6,20 @@
         {"image": "row", "x": 405, "y": 864, "rotate": 0},
         {"image": "row", "x": 540, "y": 864, "rotate": 0},
         {"image": "row", "x": 675, "y": 864, "rotate": 0},
-        {"image": "row", "x": 920, "y": 864, "rotate": 0},
-
-        {"image": "row", "x": 0, "y": 700, "rotate": 0},
-        {"image": "row", "x": 135, "y": 700, "rotate": 0},
-        {"image": "row", "x": 841, "y": 700, "rotate": 0},
-
-        {"image": "row", "x": 450, "y": 500, "rotate": 0},
-        {"image": "row", "x": 282, "y": 500, "rotate": 0},
-
-        {"image": "row", "x": 0, "y": 300, "rotate": 0},
-        {"image": "row", "x": 85, "y": 300, "rotate": 0},
-        {"image": "row", "x": 700, "y": 300, "rotate": 0},
-        {"image": "row", "x": 868, "y": 300, "rotate": 0},
-
-        {"image": "row", "x": 405, "y": 140, "rotate": 0},
-
-        {"image": "row", "x": -250, "y": 140, "rotate": 0}
+        {"image": "row", "x": 920, "y": 864, "rotate": 0}
 
     ],
 
     "ladders": [
 
-        {"image": "ladder", "x": 100, "y": 300, "rotate": 0},
-        {"image": "ladder", "x": 100, "y": 420, "rotate": 0},
-        {"image": "ladder", "x": 100, "y": 540, "rotate": 0},
-
-        {"image": "ladder", "x": 950, "y": 300, "rotate": 0},
-        {"image": "ladder", "x": 950, "y": 420, "rotate": 0},
-        {"image": "ladder", "x": 950, "y": 540, "rotate": 0},
-
-        {"image": "ladder", "x": 450, "y": 500, "rotate": 0},
-
-        {"image": "ladder", "x": 760, "y": 140, "rotate": 0}
+        {"image": "ladder", "x": 5000, "y": 500, "rotate": 0}
 
     ],
 
-    "Barrelspawns":[{"x": 500, "y": 100 ,"rate":4000,"direction":2},{"x": 650, "y": 100 ,"rate":4000,"direction":1}],
+    "Barrelspawns":[{"x": 500, "y": 0 ,"rate":4000,"direction":4}],
     "hero": {"x": 21, "y": 800},
-    "DK": {"x": 500, "y": 245},
-    "Flag": {"x": 50, "y": 145},
+    "DK": {"x": 10000, "y": 8000},
+    "Flag": {"x": 1000, "y": 8000},
     "enemyWalls":[{"x":0,"y":864},{"x":1200,"y":864}]
 
 }
